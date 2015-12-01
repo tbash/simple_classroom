@@ -5,7 +5,7 @@ class User < ActiveRecord::Base
  
   enum role: [:admin, :student, :instructor]
   after_initialize :set_role
-  after_initialize :set_user_name
+  after_initialize :set_username
 
   def set_role
     if self.email.match(/\A([\w\.%\+\-]+)(@ucf\.edu\z)/i)
@@ -15,8 +15,8 @@ class User < ActiveRecord::Base
     end
   end
 
-  def set_user_name
-    self.user_name = self.email[/[^@]+/]
+  def set_username
+    self.username = self.email[/[^@]+/]
   end
 
   # Include default devise modules. Others available are:
