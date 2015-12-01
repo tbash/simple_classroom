@@ -1,11 +1,13 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
+  username: MyString
   content: MyText
   user_id: 
   course_session_id: 
 
 two:
+  username: MyString
   content: MyText
   user_id: 
   course_session_id: 

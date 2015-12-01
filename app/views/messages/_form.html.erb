@@ -1,7 +1,8 @@
-<%= simple_form_for(@username) do |f| %>
+<%= simple_form_for(@message) do |f| %>
   <%= f.error_notification %>
 
   <div class="form-inputs">
+    <%= f.input :username %>
     <%= f.input :content %>
     <%= f.association :user %>
     <%= f.association :course_session %>

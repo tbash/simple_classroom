@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  resources :usernames
+  resources :messages
   resources :course_sessions
   devise_for :users
   resources :courses

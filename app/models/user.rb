@@ -2,7 +2,7 @@ class User < ActiveRecord::Base
   has_many :enrollments
   has_many :courses, through: :enrollments
   has_many :messages
- 
+
   enum role: [:admin, :student, :instructor]
   after_initialize :set_role
   after_initialize :set_username

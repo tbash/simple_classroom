@@ -1,4 +1,4 @@
-class Username < ActiveRecord::Base
+class Message < ActiveRecord::Base
   belongs_to :user
   belongs_to :course_session
 end
