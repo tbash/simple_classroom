@@ -1,8 +1,10 @@
 Rails.application.routes.draw do
-  resources :messages
-  resources :course_sessions
   devise_for :users
-  resources :courses
+  resources :courses do
+    resources :course_sessions do
+      resources :messages
+    end
+  end
   
   root to: "courses#index"
 end
