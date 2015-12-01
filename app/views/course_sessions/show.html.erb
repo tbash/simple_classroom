@@ -1,14 +1,25 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Title:</strong>
-  <%= @course_session.title %>
-</p>
-
-<p>
-  <strong>Course:</strong>
-  <%= @course_session.course %>
-</p>
-
-<%= link_to 'Edit', edit_course_session_path(@course_session) %> |
-<%= link_to 'Back', course_sessions_path %>
+<div class="col-lg-12 text-center">
+  <h3>
+    <%= @course_session.course.name %> - <%= @course_session.title %>
+  </h3>
+</div>
+<div class="col-sm-8">
+</div>
+<div class="col-sm-4">
+    <div class="panel panel-primary">
+        <div class="panel-body">
+            <ul class="chat">
+              <div id="messages">
+                <%= render partial: @course_session.messages %>
+              </div>
+            </ul>
+        </div>
+        <%= render 'messages/new', course_session: @course_session %>
+    </div>
+</div>
+<script>
+  var div = $('.panel-body');
+  div.scrollTop( div.get(0).scrollHeight );
+</script>

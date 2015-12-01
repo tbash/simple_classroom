@@ -1,16 +1,14 @@
 <p id="notice"><%= notice %></p>
 
 <h1><%= @course.name %> Sessions</h1>
-<div class="panel panel-primary">
+<ul class="list-group">
   <% @course.course_sessions.each do |course_session| %>
-    <div class="panel-heading">
-      <h3 class="panel-title"><%= course_session.title %></h3>
-    </div>
-    <div class="panel-body">
+    <li class="list-group-item">
+      <h3><%= course_session.title %></h3>
       <%= link_to 'View this Session', course_session %>
-    </div>
+    </li>
   <% end %>
-</div>
+</ul>
 <br>
 <% if current_user.instructor? %>
   <%= link_to 'New Session', new_course_session_path %>

@@ -1,0 +1,10 @@
+<%= simple_form_for [@course_session, Message.new]  do |f| %>
+  <div class="panel-footer">
+    <div class="input-group">
+      <%= f.search_field :content, label: false, class: 'form-control', type: 'text', placeholder:'New Message', autocomplete: 'off' %>
+      <span class="input-group-btn">
+        <%= f.submit "send", class: 'btn btn-warning', type: 'button' %>
+      </span>
+    </div>
+  </div>
+<% end %>

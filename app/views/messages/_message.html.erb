@@ -1,0 +1,16 @@
+<%= div_for(message) do %>
+  <li>
+    <% unless message.user.student? %>
+      <strong class="primary-font">
+         <font color="red"><%= message.user.username %></font>
+      </strong>
+    <% else %>
+      <strong class="primary-font">
+        <%= message.user.username %>
+      </strong>
+    <% end %>
+    <p>
+      <%= message.content %>
+    </p>
+  </li>
+<% end %>

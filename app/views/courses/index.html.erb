@@ -1,18 +1,16 @@
 <p id="notice"><%= notice %></p>
 
 <h1>Listing Courses</h1>
-<div class="panel panel-primary">
+<ul class="list-group">
   <% current_user.courses.each do |course| %>
-    <div class="panel-heading">
-      <h3 class="panel-title"><%= course.name %></h3>
-    </div>
-    <div class="panel-body">
+    <li class="list-group-item">
+      <h3><%= course.name %></h3>
       <p><%= course.description %></p>
       <p><%= User.find(course.instructor_id).username %></p>
       <%= link_to 'View Course Sessions', course %>
-    </div>
+    </li>
   <% end %>
-</div>
+</ul>
 <br>
 <% if current_user.instructor? %>
   <%= link_to 'New Course', new_course_path %>
