@@ -4,6 +4,7 @@ Rails.application.routes.draw do
 
   resources :course_sessions do
     resources :messages
+    resources :slides
   end
   
   root to: "courses#index"
