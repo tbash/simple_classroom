@@ -6,9 +6,9 @@ Vagrant.configure(2) do |config|
   config.vm.box = "ubuntu/trusty64"
   config.ssh.forward_agent = true
 
-  config.vm.network "private_network", ip: "33.33.33.12"
+  config.vm.network "private_network", ip: "33.33.33.11"
 
-  config.vm.synced_folder ".", "/srv/UCFClassroom"
+  config.vm.synced_folder ".", "/srv/simple_classroom"
 
   config.vm.provider "virtualbox" do |vb|
     vb.cpus = "2"

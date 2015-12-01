@@ -29,6 +29,18 @@ sudo -u postgres createuser --superuser vagrant
 sudo -u postgres createdb -O vagrant activerecord_unittest
 sudo -u postgres createdb -O vagrant activerecord_unittest2
 
+debconf-set-selections <<< 'mysql-server mysql-server/root_password password root'
+debconf-set-selections <<< 'mysql-server mysql-server/root_password_again password root'
+install MySQL mysql-server libmysqlclient-dev
+mysql -uroot -proot <<SQL
+CREATE USER 'vagrant'@'localhost';
+CREATE DATABASE activerecord_unittest  DEFAULT CHARACTER SET utf8 DEFAULT COLLATE utf8_general_ci;
+CREATE DATABASE activerecord_unittest2 DEFAULT CHARACTER SET utf8 DEFAULT COLLATE utf8_general_ci;
+GRANT ALL PRIVILEGES ON activerecord_unittest.* to 'vagrant'@'localhost';
+GRANT ALL PRIVILEGES ON activerecord_unittest2.* to 'vagrant'@'localhost';
+GRANT ALL PRIVILEGES ON inexistent_activerecord_unittest.* to 'vagrant'@'localhost';
+SQL
+
 install 'Nokogiri dependencies' libxml2 libxml2-dev libxslt1-dev
 install 'ExecJS runtime' nodejs
 install 'Node Package Manager' npm
