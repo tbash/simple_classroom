@@ -13,4 +13,8 @@ body { padding-top: 60px; }
 // And finally bootswatch style itself
 @import "bootswatch/sandstone/bootswatch";
 
+.col-centered{
+    float: none;
+    margin: 0 auto;
+}
 
