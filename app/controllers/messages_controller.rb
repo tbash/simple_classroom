@@ -24,7 +24,6 @@ class MessagesController < ApplicationController
   # POST /messages
   # POST /messages.json
   def create
-
     @course_session = CourseSession.find(params[:course_session_id])
     @message = @course_session.messages.new(message_params)
     @message.user = current_user
@@ -33,6 +32,7 @@ class MessagesController < ApplicationController
       if @message.save
         format.html { redirect_to @course_session }
         format.json { render :show, status: :created, location: @message }
+        format.js
       else
         format.html { render :new }
         format.json { render json: @message.errors, status: :unprocessable_entity }

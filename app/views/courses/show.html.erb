@@ -10,4 +10,6 @@
 <br>
 <% if current_user.instructor? %>
   <%= link_to 'New Session', new_course_session_path %>
+  <h4>Add students by email with a coma seperated list</h4>
+  <%= %>
 <% end %>

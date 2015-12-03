@@ -1,6 +1,6 @@
 class CoursesController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_course, only: [:show, :edit, :update, :destroy]
+  before_action :set_course, only: [:show, :edit, :update, :destroy,:mass_assign_students]
 
   # GET /courses
   # GET /courses.json
@@ -65,6 +65,21 @@ class CoursesController < ApplicationController
   end
 
   private
+
+    def mass_assign_students
+      params[:students].each do |student|
+        user = User.find_by(email: student)
+        if user
+          @course.users << user
+        end
+      end
+
+      respond_to do |format|
+        format.html { redirect_to @course, notice: 'Student(s) added' }
+      end
+    end
+    helper_method :mass_assign_students
+
     # Use callbacks to share common setup or constraints between actions.
     def set_course
       @course = Course.find(params[:id])

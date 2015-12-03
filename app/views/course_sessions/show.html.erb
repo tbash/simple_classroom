@@ -5,7 +5,7 @@
 </div>
 <div class="col-sm-8">
   <div class="panel panel-primary">
-      <div class="panel-body">
+      <div class="panel-body-slides">
         <%= @course_session.slides.all.each do |slide| %>
           <%= image_tag slide.image.url(:large) %>
         <% end %>
