@@ -25,7 +25,7 @@ class SlidesController < ApplicationController
   # POST /slides.json
   def create
     @course_session = CourseSession.find(params[:course_session_id])
-    @slide = @course_session.slides.new(slide_params)
+    @slide = @course_session.slides.build(slide_params)
 
     respond_to do |format|
       if @slide.save

@@ -12,10 +12,10 @@
       </div>
     </div>
     <% unless current_user.student? %>
-      <%= simple_form_for [@course_session, Slide.new]  do |f| %>
+      <%= simple_form_for [@course_session, Slide.new] do |f| %>
         <%= f.error_notification %>
         <div class="form-inputs">
-          <%= f.input :image, as: :file, label: false %>
+          <%= f.input :image, as: :file, multiple: true, label: false %>
         </div>
         <div class="form-actions">
           <%= f.button :submit %>
