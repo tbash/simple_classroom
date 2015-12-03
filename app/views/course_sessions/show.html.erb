@@ -4,17 +4,6 @@
   </h3>
 </div>
 <div class="col-sm-8">
-  <% unless current_user.student? %>
-    <%= simple_form_for [@course_session, Slide.new]  do |f| %>
-      <%= f.error_notification %>
-      <div class="form-inputs">
-        <%= f.input :image, as: :file, label: false %>
-      </div>
-      <div class="form-actions">
-        <%= f.button :submit %>
-      </div>
-    <% end %>
-  <% end %>
   <div class="panel panel-primary">
       <div class="panel-body-slides">
         <%= @course_session.slides.each do |slide| %>
@@ -22,6 +11,17 @@
         <% end %>
       </div>
     </div>
+    <% unless current_user.student? %>
+      <%= simple_form_for [@course_session, Slide.new]  do |f| %>
+        <%= f.error_notification %>
+        <div class="form-inputs">
+          <%= f.input :image, as: :file, label: false %>
+        </div>
+        <div class="form-actions">
+          <%= f.button :submit %>
+        </div>
+      <% end %>
+    <% end %>
 </div>
 <div class="col-sm-4">
     <div class="panel panel-primary">
