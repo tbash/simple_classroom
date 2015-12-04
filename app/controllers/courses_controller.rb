@@ -1,6 +1,6 @@
 class CoursesController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_course, only: [:show, :edit, :update, :destroy,:mass_assign_students]
+  before_action :set_course, only: [:show, :edit, :update, :destroy, :enroll]
 
   # GET /courses
   # GET /courses.json
@@ -40,6 +40,20 @@ class CoursesController < ApplicationController
     end
   end
 
+  def enroll
+    emails = params[:course][:emails].split(",").map(&:strip)
+    emails.each do |email|
+      user = User.find_by(email: email)
+      if user && (!@course.users.include?(user))
+        @course.users << user
+      end
+    end
+
+    respond_to do |format|
+      format.html { redirect_to @course, notice: 'Student(s) added' }
+    end
+  end
+
   # PATCH/PUT /courses/1
   # PATCH/PUT /courses/1.json
   def update
@@ -66,20 +80,6 @@ class CoursesController < ApplicationController
 
   private
 
-    def mass_assign_students
-      params[:students].each do |student|
-        user = User.find_by(email: student)
-        if user
-          @course.users << user
-        end
-      end
-
-      respond_to do |format|
-        format.html { redirect_to @course, notice: 'Student(s) added' }
-      end
-    end
-    helper_method :mass_assign_students
-
     # Use callbacks to share common setup or constraints between actions.
     def set_course
       @course = Course.find(params[:id])
@@ -87,6 +87,6 @@ class CoursesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def course_params
-      params.require(:course).permit(:name, :description, :instructor_id)
+      params.require(:course).permit(:name, :description, :instructor_id, :emails)
     end
 end

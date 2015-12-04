@@ -4,7 +4,7 @@ class User < ActiveRecord::Base
   has_many :enrollments
   has_many :courses, through: :enrollments
   has_many :messages
-  enum role: [:student, :instructor]
+  enum role: [:student, :instructor, :admin]
 
   def set_role
     if self.email.match(/\A([\w\.%\+\-]+)(@ucf\.edu\z)/i)

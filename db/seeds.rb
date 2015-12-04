@@ -5,4 +5,12 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
-User.create(email: "tbash@knights.ucf.edu", password: "password", password_confirmation: "password", role: 1)
+emails = ["instructor@ucf.edu", "student1@knights.ucf.edu", "student2@knights.ucf.edu", "student3@knights.ucf.edu"]
+
+emails.each do |email|
+  user = User.new(email: "#{email}", password: "password", password_confirmation: "password")
+  user.skip_confirmation!
+  user.save!
+end
+
+User.create(email: "admin@ucf.edu", password: "password", password_confirmation: "password", role: 2)

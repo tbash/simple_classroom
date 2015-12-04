@@ -1,12 +1,23 @@
-<h1>Listing Courses</h1>
+<h1><%= current_user.username%>'s Courses</h1>
 <ul class="list-group">
-  <% current_user.courses.each do |course| %>
-    <li class="list-group-item">
-      <h3><%= course.name %></h3>
-      <p><%= course.description %></p>
-      <p><%= User.find(course.instructor_id).username %></p>
-      <%= link_to 'View Course Sessions', course %>
-    </li>
+  <% unless current_user.admin? %>
+    <% current_user.courses.each do |course| %>
+      <li class="list-group-item">
+        <h3><%= course.name %></h3>
+        <p><%= course.description %></p>
+        <p><%= User.find(course.instructor_id).username %></p>
+        <%= link_to 'View Course Sessions', course %>
+      </li>
+    <% end %>
+  <% else %>
+    <% Courses.all.each do |course| %>
+      <li class="list-group-item">
+        <h3><%= course.name %></h3>
+        <p><%= course.description %></p>
+        <p><%= User.find(course.instructor_id).username %></p>
+        <%= link_to 'View Course Sessions', course %>
+      </li>
+    <% end %>
   <% end %>
 </ul>
 <br>
