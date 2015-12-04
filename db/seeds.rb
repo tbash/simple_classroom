@@ -13,4 +13,6 @@ emails.each do |email|
   user.save!
 end
 
-User.create(email: "admin@ucf.edu", password: "password", password_confirmation: "password", role: 2)
+admin = User.new(email: "admin@ucf.edu", password: "password", password_confirmation: "password", role: 2)
+admin.skip_confirmation!
+admin.save!
